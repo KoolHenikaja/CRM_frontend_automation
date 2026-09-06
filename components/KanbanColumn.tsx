@@ -1,45 +1,35 @@
-import { AlertTriangle, Clock, CalendarDays, Hourglass, Archive, LucideIcon } from "lucide-react";
-import { Bucket, EvaluatedLead } from "@/lib/types";
+import { LucideIcon } from "lucide-react";
+import { EvaluatedLead } from "@/lib/types";
 import LeadCard from "./LeadCard";
 
-const ICONS: Record<Bucket, LucideIcon> = {
-  en_retard: AlertTriangle,
-  aujourdhui_demain: Clock,
-  cette_semaine: CalendarDays,
-  plus_tard: Hourglass,
-  a_archiver: Archive,
-};
-
-const ACCENT: Record<Bucket, string> = {
-  en_retard: "#FF6A3D",
-  aujourdhui_demain: "#F2A14E",
-  cette_semaine: "#3DB8E0",
-  plus_tard: "#586170",
-  a_archiver: "#4A5058",
-};
-
 export default function KanbanColumn({
-  bucket,
   label,
+  accentColor,
+  icon: Icon,
   leads,
   onMarquerAppele,
 }: {
-  bucket: Bucket;
   label: string;
+  accentColor: string;
+  icon?: LucideIcon;
   leads: EvaluatedLead[];
   onMarquerAppele: (email: string) => void;
 }) {
-  const Icon = ICONS[bucket];
-  const accent = ACCENT[bucket];
-
   return (
     <div className="flex h-full w-[280px] shrink-0 flex-col rounded-panel border border-console-line bg-console-panel">
       <div className="flex items-center gap-2 border-b border-console-line px-3 py-2.5">
-        <Icon size={14} strokeWidth={2} />
-        <span className="text-[13px] font-medium text-console-text">{label}</span>
+        {Icon ? (
+          <Icon size={14} strokeWidth={2} />
+        ) : (
+          <span
+            className="h-2 w-2 shrink-0 rounded-full"
+            style={{ backgroundColor: accentColor }}
+          />
+        )}
+        <span className="truncate text-[13px] font-medium text-console-text">{label}</span>
         <span
-          className="ml-auto rounded-full px-1.5 py-0.5 font-mono text-[11px]"
-          style={{ color: accent, backgroundColor: `${accent}1A` }}
+          className="ml-auto shrink-0 rounded-full px-1.5 py-0.5 font-mono text-[11px]"
+          style={{ color: accentColor, backgroundColor: `${accentColor}1A` }}
         >
           {leads.length}
         </span>

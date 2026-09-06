@@ -1,6 +1,9 @@
 "use client";
 
 import { Search, Info } from "lucide-react";
+import { GroupBy, SortDir } from "@/lib/grouping";
+import GroupMenu from "./GroupMenu";
+import SortMenu from "./SortMenu";
 
 export default function TopBar({
   today,
@@ -10,6 +13,10 @@ export default function TopBar({
   onCommercialChange,
   query,
   onQueryChange,
+  groupBy,
+  onGroupByChange,
+  sortDir,
+  onSortDirChange,
   onToggleInfo,
 }: {
   today: string;
@@ -19,6 +26,10 @@ export default function TopBar({
   onCommercialChange: (v: string) => void;
   query: string;
   onQueryChange: (v: string) => void;
+  groupBy: GroupBy;
+  onGroupByChange: (v: GroupBy) => void;
+  sortDir: SortDir;
+  onSortDirChange: (v: SortDir) => void;
   onToggleInfo: () => void;
 }) {
   return (
@@ -65,6 +76,11 @@ export default function TopBar({
           placeholder="Rechercher un lead…"
           className="w-48 rounded-card border border-console-line bg-console-panel py-1.5 pl-7 pr-2 text-[12px] text-console-text placeholder:text-console-textFaint"
         />
+      </div>
+
+      <div className="flex items-center gap-2">
+        <GroupMenu value={groupBy} onChange={onGroupByChange} />
+        <SortMenu groupBy={groupBy} value={sortDir} onChange={onSortDirChange} />
       </div>
 
       <button
