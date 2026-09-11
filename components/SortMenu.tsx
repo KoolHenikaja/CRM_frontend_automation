@@ -37,7 +37,7 @@ export default function SortMenu({
                 onChange(dir);
                 close();
               }}
-              className="flex w-full items-center gap-2 rounded-card px-2 py-1.5 text-left text-[12px] text-console-text hover:bg-console-panelAlt"
+              className="flex w-full bg-black/90 items-center gap-2 rounded-card px-2 py-1.5 text-left text-[12px] text-console-text hover:bg-console-panelAlt"
             >
               <span className="flex-1">{labels[dir]}</span>
               {dir === value && <Check size={13} strokeWidth={2} className="text-signal-cool" />}

@@ -54,11 +54,13 @@ export default function TopBar({
       <select
         value={commercial}
         onChange={(e) => onCommercialChange(e.target.value)}
-        className="rounded-card border border-console-line bg-console-panel px-2 py-1.5 text-[12px] text-console-text"
+        className="rounded-card border border-console-line bg-black/80 backdrop-blur-sm px-2 py-1.5 text-[12px] text-console-text"
       >
-        <option value="tous">Tous les commerciaux</option>
+        <option value="tous" className="bg-console-panel text-console-text">
+          Tous les commerciaux
+        </option>
         {commerciaux.map((c) => (
-          <option key={c} value={c}>
+          <option key={c} value={c} className="bg-console-panel text-console-text">
             {c}
           </option>
         ))}
